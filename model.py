@@ -1,9 +1,13 @@
 """Models for movie ratings app."""
 
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 db = SQLAlchemy()
 
+print('hi')
+print(datetime.datetime.now())
+print(datetime.date(2019, 5, 15))
 
 class User(db.Model):
     """Users for our Movie Rating App"""
@@ -28,8 +32,7 @@ class Movie(db.Model):
     __tablename__ = "movies"
 
     movie_id = db.Column(db.Integer, 
-                        primary_key=True,
-                        autoincrement=True,
+                        primary_key=True
                         )
     title = db.Column(db.String, nullable=False)
     overview = db.Column(db.Text)
