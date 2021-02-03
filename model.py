@@ -87,6 +87,14 @@ def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
     print('Connected to the db!')
 
 
+
+# Tests to see if database is populated.
+# print(model.db.session.query('movies').filter_by(title='Ad Astra'))
+# print(Movie.query.filter(Movie.name == 'Ad Astra').all()) # WE ARE HERE. TEST THIS!!
+
+
+
+
 if __name__ == '__main__':
     from server import app
 

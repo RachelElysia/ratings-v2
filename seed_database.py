@@ -24,5 +24,3 @@ for movie in movie_data:
 
     curr_movie = crud.create_movie(movie['title'], movie['overview'], release_date, movie['poster_path'])
     movie_list.append(curr_movie)
-
-print(movie_list)
