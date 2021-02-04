@@ -32,7 +32,42 @@ def show_movie(movie_id):
     """Display movie details"""
 
     movie = crud.get_movie_by_id(movie_id)
+
     return render_template('movie_details.html', movie=movie)
+
+@app.route('/users', methods=['POST'])
+def register_user():
+    """Create a new user."""
+
+    email = request.form.get('email')
+    password = request.form.get('password')
+    
+    user = crud.get_user_by_email(email)
+
+    if user:
+        flash('Email address already associated to an account. Try again.')
+    else:
+        user = crud.create_user(email, password)
+        flash('Account successfully created! Please log in to rate movies.')
+
+    return redirect('/')
+
+@app.route('/users')
+def all_users():
+    """View all users page."""
+
+    users = crud.get_users()
+
+    return render_template('users.html', users=users)
+
+@app.route('/user/<user_id>')
+def show_user(user_id):
+    """Display movie details"""
+
+    user = crud.get_user_by_id(user_id)
+
+    return render_template('user_details.html', user=user)
+
 
 if __name__ == '__main__':
     connect_to_db(app)
