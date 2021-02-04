@@ -27,6 +27,13 @@ def all_movies():
 
     return render_template('movies.html', movies=movies)
 
+@app.route('/movie/<movie_id>')
+def show_movie(movie_id):
+    """Display movie details"""
+
+    movie = crud.get_movie_by_id(movie_id)
+    return render_template('movie_details.html', movie=movie)
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)

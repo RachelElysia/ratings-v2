@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
-{% block title %}All Movies{% endblock %}
+{% block title %}{{ movie.title}} - Details{% endblock %}
 
 {% block body %}
-  <h1>All Movies</h1>
+  <h1>{{ movie.title }}</h1>
 
-  {% for movie in movies %}
-  <ul>
-    <li><a href="/movie/{{ movie.movie_id }}">{{ movie.title }}</a></li>
-    <li>{{movie.release_date}}</li>
-  </ul>
-  {% endfor %}
+  <img src="{{ movie.poster_path }}" width="300">
+
+  <p>
+    {{ movie.overview }}
+  </p>
+  
+
 {% endblock %}
