@@ -52,6 +52,25 @@ def register_user():
 
     return redirect('/')
 
+@app.route('/', methods=['POST'])
+def log_in():
+    """Log In user."""
+
+    email_entered = request.form.get('email')
+    password_entered = request.form.get('password')
+    
+    user = crud.get_user_by_email(email_entered)
+
+    if user is None:
+        flash('This email address is not associated with an account. Please try again.')
+    elif password_entered == user.password:
+        session['primary_key'] = user.user_id 
+        flash('You are successfully logged in!')
+    else:
+        flash('Incorrect password. Please try again.')
+
+    return redirect('/')
+
 @app.route('/users')
 def all_users():
     """View all users page."""
